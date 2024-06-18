@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='imagens/favicon_palmed.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles.css') }}">
+    <title>Workspaces Power BI</title>
+</head>
+<body>
+    <div id="workspace-selector">
+        <div id="logo">
+            <img src="{{ url_for('static', filename='imagens/logo_pbi_palmed.svg') }}" alt="Logo" height="50"> 
+        </div>
+        <h2>Escolha o Espaço de Trabalho:</h2>
+        <div id="workspace-buttons">
+            {% for workspace in workspaces %}
+                <a href="/relatorios/{{ workspace.ID_WORKSPACE }}">
+                    <img src="{{ workspace.IMAGEM }}" alt="{{ workspace.NOME }}">
+                    <span>{{ workspace.NOME }}</span>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

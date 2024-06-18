@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Dados do Usuário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">  <!-- Substitua pelo caminho correto do seu arquivo CSS -->
+</head>
+<body>
+    <div class = "p-dados">
+        <h1>Dados do Usuário</h1>
+        <p>Nome: {{ nome }}</p>
+        <p>Descrição: {{ descricao }}</p>
+    </div>    
+    {% if imagem %}
+    <img class="img-fom" src="{{ imagem }}" alt="Imagem do Usuário">
+    {% endif %}
+</body>
+</html>

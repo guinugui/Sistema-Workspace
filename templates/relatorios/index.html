@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/relatorios/styles.css') }}">
+    <title>{{ workspace_nome }}</title>
+</head>
+<body>
+    <div id="navbar">
+        <img src="{{ workspace_img }}" alt="{{ workspace_nomeE }}">
+        {% for link in link_relatorio %}
+            <a href="#" onclick="loadReport('{{ link.LINK }}', '{{ link.ID_RELATORIO }}'); return false;" id="{{ link.ID_RELATORIO }}" data-link="{{ link.LINK }}">
+                <img class="icon" src="{{ url_for('static', filename=link.IMAGEM) }}">
+                <span>{{ link.NOME }}</span>
+            </a>
+        {% endfor %}
+        <a href="/" id="btnVoltar">Voltar</a>
+    </div>
+    <div id="iframe-container">
+        <iframe id="report-iframe" frameborder="0" allowfullscreen="true"></iframe>
+    </div>
+
+    <script src="{{ url_for('static', filename='jv_script/scripts.js') }}"></script>
+</body>
+</html>
