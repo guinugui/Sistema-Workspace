@@ -3,17 +3,19 @@ from services.database import connect_to_oracle
 
 app = Flask(__name__)
 
+
 # Função para conectar ao banco de dados Oracle
 def get_db_cursor():
     connection = connect_to_oracle()
     return connection.cursor()
+
 
 @app.route('/')
 def index():
     try:
         cursor = get_db_cursor()
 
-        # Obtenha todos os workspaces do banco de dados
+        # Obtenha todos os workspaces do banco de dados, incluindo a cor HEX
         cursor.execute('SELECT ID_WORKSPACE, NOME, IMAGEM FROM PBI_WORKSPACES')
         workspaces = cursor.fetchall()
 
@@ -38,16 +40,18 @@ def relatorios(workspace_id):
         cursor.execute('SELECT NOME, LINK, IMAGEM FROM PBI_RELATORIOS WHERE ID_WORKSPACE = :id', {'id': workspace_id})
         workspace_row = cursor.fetchone()
 
-        # Verifique se o workspace foi encontrado
+        
+        # Obtenha a imagem do workspace correspondente
+        cursor.execute('SELECT IMAGEM, NOME, COR_HEX FROM PBI_WORKSPACES WHERE ID_WORKSPACE = :id', {'id': workspace_id})
+        workspace_img, workspace_nome, worksapce_cor = cursor.fetchone()
+         # Verifique se o workspace foi encontrado
         if not workspace_row:
             # Feche o cursor
             cursor.close()
-            # Caso não encontre o workspace, redirecione para uma página de erro
-            return render_template('erro.html', mensagem='Workspace não encontrado.')
+            # Renderize a página com a mensagem de nenhum relatório encontrado
+            return render_template('Sem_Relatorios/index.html', workspace_img=workspace_img, workspace_nome=workspace_nome, worksapce_cor=worksapce_cor)
         
-        # Obtenha a imagem do workspace correspondente
-        cursor.execute('SELECT IMAGEM, NOME FROM PBI_WORKSPACES WHERE ID_WORKSPACE = :id', {'id': workspace_id})
-        workspace_img, workspace_nome = cursor.fetchone()
+        
 
         # Obtenha os relatórios para o workspace selecionado
         cursor.execute('SELECT ID_RELATORIO, NOME, LINK, IMAGEM FROM PBI_RELATORIOS WHERE ID_WORKSPACE = :id ORDER BY ID_RELATORIO DESC', {'id': workspace_id})
@@ -59,7 +63,8 @@ def relatorios(workspace_id):
         # Feche o cursor
         cursor.close()
 
-        return render_template('relatorios/index.html', workspace_id=workspace_id, workspace=workspace_row, workspace_img=workspace_img, workspace_nome=workspace_nome, link_relatorio=link_relatorio)
+        return render_template('relatorios/index.html', workspace_id=workspace_id, workspace=workspace_row, workspace_img=workspace_img, workspace_nome=workspace_nome,
+                               worksapce_cor= worksapce_cor, link_relatorio=link_relatorio)
     except Exception as e:
         return f'Erro ao conectar ao banco de dados ou executar a consulta: {e}', 500
 
