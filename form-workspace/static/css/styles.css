@@ -1,0 +1,253 @@
+/* Estilo para o modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.2);
+
+        /* position: absolute;
+        left: 0;
+        top: 55px;
+        width: 100%;
+        height: calc(100% - 55px);
+        overflow: hidden; */
+    }
+
+  .modal-content {
+    background-color: white;
+    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid #ebebeb;
+    width: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    /* background-color: white;
+    margin: auto;
+    position: fixed;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ebebeb;
+    width:50%; */
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  /* mapeamento.css */
+
+/* Geral */
+.container {
+    background-color: white;
+    border-radius: 18px;
+    width: 80%;
+    max-width: 800px;
+    height: auto;
+    max-height: 90vh; /* Increased max-height */
+    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    overflow: hidden; /* Oculta a barra de rolagem do .container se houver */
+}
+
+.container-n2 {
+    background-color: white;
+    border: 1px solid #ebebeb;
+    border-radius: 6px;
+    padding: 20px;
+    margin: 5vh auto; /* Espaçamento entre o .container-n2 e o .container */
+    text-align: left;
+    width: 90%; /* Ocupa 90% da largura do .container pai */
+    max-width: 800px; /* Largura máxima para evitar que o conteúdo se espalhe demais */
+    box-sizing: border-box;
+    height: calc(100% - 10vh); /* Altura fixa baseada na altura do container pai */
+    max-height: calc(80vh - 120px); /* Altura máxima para evitar que o .container-n2 se sobreponha ao .container pai */
+    overflow-y: auto; /* Habilita a rolagem vertical se o conteúdo exceder a altura */
+    /* Estiliza a barra de rolagem */
+    scrollbar-width: thin; /* Define a largura da barra de rolagem (Firefox) */
+    scrollbar-color: rgba(155, 155, 155, 0.7) rgba(255, 255, 255, 0.3); /* Define as cores da barra de rolagem (Firefox) */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.container-n2::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* Make scrollbar transparent */
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.container-n2 {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-success {
+    margin-left: auto;
+}
+
+/* Mensagens */
+.alert {
+    margin-top: 10px;
+}
+
+.alert .close {
+    margin-left: 10px;
+}
+.btn-xs {
+    margin: 0 5px;
+}
+
+/* Formulários */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background-color: #48887B; /* Green */
+    float: inline-end;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ebebeb;
+    border-radius: 6px; /* Bordas arredondadas */
+    border: none; /* Sem borda */
+    padding: 8px 14px;
+    display: flex; /* Usar flexbox */
+    cursor: pointer;
+    
+}
+.btn-primary img {
+    width: 20px; /* Tamanho da imagem */
+    height: 20px; /* Altura da imagem */
+    margin-right: 10px; /* Margem à direita da imagem */
+}
+
+.btn-secondary {
+    background-color: #48887B; /* Green */
+    border: none;
+    border-radius: 12%;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    float: right;
+    cursor: pointer;
+}
+.btn-success{
+    background-color: #48887B; /* Green */
+    border: none;
+    border-radius: 12%;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+body {
+    background-color:#48887B;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 0;
+    padding: 60px;
+}
+
+.well{
+    text-align: left;
+    padding: 2px; /* Adiciona preenchimento interno */
+    color: #333333;
+    justify-content: space-between; /* Alinha os itens no espaço entre eles */
+}
+
+
+ .workspace-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.workspace-item {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ebebeb;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.workspace-icon {
+    flex: 0 0 auto;
+    margin-right: 10px;
+}
+
+.workspace-icon img {
+    max-width: 32px;
+    max-height: 32px;
+}
+
+.workspace-details {
+    flex: 1 1 auto;
+    margin-right: 10px;
+}
+
+.workspace-name {
+    font-weight: bold;
+    color: #333333;
+    font-size: 14px;
+}
+
+.workspace-description {
+    font-weight: normal;
+    color: #6a6a6a;
+    font-size: 12px;
+}
+
+.workspace-actions {
+    flex: 0 0 auto;
+    display: flex;
+}
+.alert{
+   text-align: center;
+   font-size: 22px;
+   color: #333333;
+}
+
+
+
+

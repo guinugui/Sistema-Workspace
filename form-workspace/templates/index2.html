@@ -1,0 +1,148 @@
+{% include "header.html" %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+        
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissable" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Icone</th>
+                        <th>Sequência</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Cor</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in dados %}
+                    <tr>
+                       <td><img src="{{ row.3 }}" alt="Imagem de {{ row.0 }}" class="img-fluid" style="max-width: 32px; max-height: 32px;"></td> 
+                       <td>{{ row.4 }}</td>
+                       <td>{{ row.1 }}</td>
+                       <td>{{ row.2 }}</td>
+                        <td>{{ row.5 }}</td>
+                        <td>
+                            <!-- Botão de Editar que abre o modal -->
+                            <a href="#" class="btn btn-warning btn-xs" onclick="openEditModal('{{ row.0 }}', '{{ row.1 }}', '{{ row.2 }}', '{{ row.3 }}', '{{ row.4 }}', '{{ row.5 }}')">Edit</a>
+                            <!-- Botão de Deletar -->
+                            <a href="/delete/{{ row.0 }}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure For Delete?')">Delete</a>
+                           </td>
+                     {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para editar -->
+<div id="editModal" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Information</h5>
+                <button type="button" class="close" onclick="closeEditModal()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <form id="editForm" action="{{ url_for('update') }}" method="POST">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="editID">ID Workspace:</label>
+                        <input type="hidden" id="editID" name="ID_WORKSPACE">
+                        <p id="editIDDisplay"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="editNome">Name:</label>
+                        <input type="text" class="form-control" id="editNome" name="nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="editDescricao">Descrição:</label>
+                        <input type="text" class="form-control" id="editDescricao" name="descricao">
+                    </div>
+                    <div class="form-group">
+                        <label for="editImagem">Imagem:</label>
+                        <input type="text" class="form-control" id="editImagem" name="imagem">
+                    </div>
+                    <div class="form-group">
+                        <label for="editSequencia">Sequência:</label>
+                        <input type="text" class="form-control" id="editSequencia" name="sequencia">
+                    </div>
+                    <div class="form-group">
+                        <label for="editCor">Cor:</label>
+                        <input type="text" class="form-control" id="editCor" name="cor">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeEditModal()">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para inserção de novos dados -->
+<div id="myModal" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Student Data</h5>
+                <button type="button" class="close" onclick="closeAddModal()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <form action="{{ url_for('insert') }}" method="POST">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="nome">Name:</label>
+                        <input type="text" class="form-control" id="nome" name="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao">Descrição:</label>
+                        <input type="text" class="form-control" id="descricao" name="descricao" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="imagem">Imagem:</label>
+                        <input type="text" class="form-control" id="imagem" name="imagem" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sequencia">Sequência:</label>
+                        <input type="number" class="form-control" id="sequencia" name="sequencia" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cor">Cor Hexadecimal:</label>
+                        <input type="text" class="form-control" id="cor" name="cor" required placeholder="Ex: #0A0B0C">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Insert Data</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeAddModal()">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-2IMjvRW4pH1T89jO+V3osvC5fS3IFlk/M0PLB7quNuzXtpJA5zLw1rIyomG6FsPm" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}
