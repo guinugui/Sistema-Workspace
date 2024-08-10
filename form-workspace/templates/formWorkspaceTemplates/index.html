@@ -2,22 +2,25 @@
 <html>
 
 <head>
-    <title>bb</title>
-    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
-    <link rel="shortcut icon" href="{{url_for('static', filename = 'teacher.png' )}}">
+    <title>Gerenciar Workspace</title>
+    <link href="{{ url_for('static', filename='formWorkspaceStatic/css/styles.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{url_for('static', filename = 'formWorkspaceStatic/icon/favicon_palmed.png' )}}">
 </head>
 
 <body>
-
+    
     <div class="container">
+        
         <div class="well">
             <h3>Gerenciar Workspace <button type="button" class="btn btn-primary mb-3" data-toggle="modal"
                     data-target="#myModal">
-                    <img src="{{ url_for('static', filename='icon/adicionar.svg') }}" alt="Adicionar">
+                    <img src="{{ url_for('static', filename='formWorkspaceStatic/icon/adicionar.svg') }}" alt="Adicionar">
                     Novo Workspace</button></h3>
+                    
         </div>
 
         <div class="container-n2">
+            
             {% block body %}
             <div class="row">
                 <div class="col-md-12">
@@ -30,19 +33,17 @@
                             <div class="workspace-details">
                                 <div class="workspace-name">{{ row.1 }}</div>
                                 <div class="workspace-description">{{ row.2 }}</div>
+                                <a href="{{ url_for('main.relatorios', workspace_id=row[0]) }}" class="btn btn-info">Relatórios</a>
                             </div>
                             <div class="workspace-actions">
                                 <a href="#" class="btn btn-warning btn-xs"
                                 onclick="openEditModal('{{ row.0 }}', '{{ row.1 }}', '{{ row.2 }}', '{{ row.3 }}', '{{ row.4 }}', '{{ row.5 }}')">
-                                <img src="{{ url_for('static', filename='icon/editar.svg') }}" alt="Editar">
+                                <img src="{{ url_for('static', filename='formWorkspaceStatic/icon/editar.svg') }}" alt="Editar">
                             </a>
-                            <a href="/delete/{{ row.0 }}" class="btn btn-danger btn-xs"
-                                    onclick="return confirm('Tem certeza que deseja deletar?')">
-                                    <img src="{{ url_for('static', filename='icon/delete.svg') }}" alt="Deletar">
-                                </a>
-                                <h3>
-                                    <a href="{{ url_for('relatorios', workspace_id=row[0]) }}" class="btn btn-info">Ir para Relatórios</a>
-                                </h3>
+                            <a href="{{ url_for('main.delete', ID_WORKSPACE=row.0) }}" class="btn btn-danger btn-xs" onclick="return confirm('Tem certeza que deseja deletar?')">
+                                <img src="{{ url_for('static', filename='formWorkspaceStatic/icon/delete.svg') }}" alt="Deletar">
+                            </a>
+                                    
                             </div>
                         </li>
                         {% endfor %}
@@ -61,6 +62,7 @@
         {% endfor %}
         {% endif %}
         {% endwith %}
+        <a href="{{ url_for('login.logout') }}" class="btn btn-link">Logout</a>
     </div>
 
     <!-- Modal para editar -->
@@ -73,7 +75,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title">Editar Workspace</h5>
                 </div>
-                <form id="editForm" action="{{ url_for('update') }}" method="POST">
+                <form id="editForm" action="{{ url_for('main.update') }}" method="POST">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="editID"><strong>ID Workspace:</strong></label>
@@ -94,7 +96,7 @@
                         </div>
                         <div class="form-group">
                             <label for="editSequencia"><strong>Sequência:</strong></label>
-                            <input type="text" class="form-control" id="editSequencia" name="sequencia">
+                            <input type="number" class="form-control" id="editSequencia" name="sequencia">
                         </div>
                         <div class="form-group">
                             <label for="editCor"><strong>Cor:</strong></label>
@@ -121,7 +123,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title">Adicionar Workspace</h5>
                 </div>
-                <form action="{{ url_for('insert') }}" method="POST">
+                <form action="{{ url_for('main.insert') }}" method="POST">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="nome"><strong>Name:</strong></label>
@@ -164,7 +166,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='formWorkspaceStatic/js/script.js') }}"></script>
 
 </body>
 

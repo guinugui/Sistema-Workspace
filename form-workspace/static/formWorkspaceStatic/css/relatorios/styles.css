@@ -8,17 +8,10 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0, 0, 0, 0.2);
+}
 
-        /* position: absolute;
-        left: 0;
-        top: 55px;
-        width: 100%;
-        height: calc(100% - 55px);
-        overflow: hidden; */
-    }
-
-  .modal-content {
+.modal-content {
     background-color: white;
     margin: auto;
     position: fixed;
@@ -29,16 +22,12 @@
     border-radius: 8px;
     border: 2px solid #ebebeb;
     width: 50%;
+    max-width: 90vw; /* Define a largura máxima como 90% da viewport */
+    max-height: 90vh; /* Define a altura máxima como 90% da viewport */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: auto; /* Adiciona rolagem se o conteúdo ultrapassar a altura máxima */
+}
 
-    /* background-color: white;
-    margin: auto;
-    position: fixed;
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #ebebeb;
-    width:50%; */
-  }
 
   .close {
     color: #aaa;
@@ -148,38 +137,41 @@ h2 {
     padding: 8px 14px;
     display: flex; /* Usar flexbox */
     cursor: pointer;
+    text-decoration: none;
     
 }
 .btn-primary img {
     width: 20px; /* Tamanho da imagem */
     height: 20px; /* Altura da imagem */
     margin-right: 10px; /* Margem à direita da imagem */
+    
 }
 
 .btn-secondary {
     background-color: #48887B; /* Green */
-    border: none;
-    border-radius: 12%;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    float: right;
+    float: inline-end;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ebebeb;
+    border-radius: 6px; /* Bordas arredondadas */
+    border: none; /* Sem borda */
+    padding: 8px 14px;
+    display: flex; /* Usar flexbox */
     cursor: pointer;
+    text-decoration: none;
+    float: right;
 }
 .btn-success{
     background-color: #48887B; /* Green */
-    border: none;
-    border-radius: 12%;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+    float: inline-end;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ebebeb;
+    border-radius: 6px; /* Bordas arredondadas */
+    border: none; /* Sem borda */
+    padding: 8px 14px;
+    display: flex; /* Usar flexbox */
     cursor: pointer;
+    text-decoration: none;
+    float: left;
 }
 body {
     background-color:#48887B;
@@ -209,13 +201,16 @@ body {
     border-radius: 4px;
     margin-bottom: 10px;
     padding: 10px;
+    
 }
 
 .workspace-icon {
     flex: 0 0 auto;
     margin-right: 10px;
-    background-color: black;
+    padding: 12px;
     display: inline-block; /* Para garantir que cada ícone fique em uma linha */
+    filter: grayscale(0%) brightness(100%);
+    filter: grayscale(100%) brightness(40%);
 }
 
 .workspace-icon img {

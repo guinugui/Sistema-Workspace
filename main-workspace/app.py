@@ -16,7 +16,7 @@ def index():
         cursor = get_db_cursor()
 
         # Obtenha todos os workspaces do banco de dados, incluindo a cor HEX
-        cursor.execute('SELECT ID_WORKSPACE, NOME, IMAGEM FROM PBI_WORKSPACES')
+        cursor.execute('SELECT ID_WORKSPACE, NOME, IMAGEM FROM PBI_WORKSPACE')
         workspaces = cursor.fetchall()
 
         # Converta os resultados para uma lista de dicionários para facilitar o uso no template
@@ -37,12 +37,12 @@ def relatorios(workspace_id):
         cursor = get_db_cursor()
 
         # Obtenha os dados do workspace usando parâmetros para prevenir injeção SQL
-        cursor.execute('SELECT NOME, LINK, IMAGEM FROM PBI_RELATORIOS WHERE ID_WORKSPACE = :id', {'id': workspace_id})
+        cursor.execute('SELECT NOME, LINK, IMAGEM FROM PBI_WORKSPACE_RELATORIO WHERE ID_WORKSPACE = :id', {'id': workspace_id})
         workspace_row = cursor.fetchone()
 
         
         # Obtenha a imagem do workspace correspondente
-        cursor.execute('SELECT IMAGEM, NOME, COR_HEX FROM PBI_WORKSPACES WHERE ID_WORKSPACE = :id', {'id': workspace_id})
+        cursor.execute('SELECT IMAGEM, NOME, COR_HEX FROM PBI_WORKSPACE WHERE ID_WORKSPACE = :id', {'id': workspace_id})
         workspace_img, workspace_nome, worksapce_cor = cursor.fetchone()
          # Verifique se o workspace foi encontrado
         if not workspace_row:
@@ -54,7 +54,7 @@ def relatorios(workspace_id):
         
 
         # Obtenha os relatórios para o workspace selecionado
-        cursor.execute('SELECT ID_RELATORIO, NOME, LINK, IMAGEM FROM PBI_RELATORIOS WHERE ID_WORKSPACE = :id ORDER BY ID_RELATORIO DESC', {'id': workspace_id})
+        cursor.execute('SELECT ID_RELATORIO, NOME, LINK, IMAGEM FROM PBI_WORKSPACE_RELATORIO WHERE ID_WORKSPACE = :id ORDER BY ID_RELATORIO ASC', {'id': workspace_id})
         rows = cursor.fetchall()
 
         # Converta os resultados para uma lista de dicionários para facilitar o uso no template

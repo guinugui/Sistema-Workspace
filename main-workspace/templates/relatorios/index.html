@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ workspace_img }}" type="image/x-icon">
     <title>{{ workspace_nome }}</title>
 </head>
 <style>
@@ -92,10 +93,12 @@
 </style>
 <body>
     <div id="navbar">
-        <img src="{{ workspace_img }}" alt="{{ workspace_nomeE }}">
+        <div class="workspace-container">
+            <img src="{{ workspace_img }}" alt="{{ workspace_nome }}">
+        </div>
         {% for link in link_relatorio %}
             <a href="#" onclick="loadReport('{{ link.LINK }}', '{{ link.ID_RELATORIO }}'); return false;" id="{{ link.ID_RELATORIO }}" data-link="{{ link.LINK }}">
-                <img class="icon" src="{{ url_for('static', filename=link.IMAGEM) }}">
+                <img class="icon" src="{{ link.IMAGEM }}">
                 <span>{{ link.NOME }}</span>
             </a>
         {% endfor %}

@@ -9,13 +9,6 @@
     height: 100%;
     overflow: hidden;
     background-color: rgba(0,0,0,0.2);
-
-        /* position: absolute;
-        left: 0;
-        top: 55px;
-        width: 100%;
-        height: calc(100% - 55px);
-        overflow: hidden; */
     }
 
   .modal-content {
@@ -158,28 +151,54 @@ h2 {
 
 .btn-secondary {
     background-color: #48887B; /* Green */
-    border: none;
-    border-radius: 12%;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    float: right;
+    float: inline-end;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ebebeb;
+    border-radius: 6px; /* Bordas arredondadas */
+    border: none; /* Sem borda */
+    padding: 8px 14px;
+    display: flex; /* Usar flexbox */
     cursor: pointer;
+    text-decoration: none;
+    float: right;
 }
 .btn-success{
     background-color: #48887B; /* Green */
-    border: none;
-    border-radius: 12%;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+    float: inline-end;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ebebeb;
+    border-radius: 6px; /* Bordas arredondadas */
+    border: none; /* Sem borda */
+    padding: 8px 14px;
+    display: flex; /* Usar flexbox */
     cursor: pointer;
+    text-decoration: none;
+    float: left;
+}
+.btn-link{
+    background-color: #48887B; /* Green */
+    float: inline-end;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ebebeb;
+    border-radius: 6px; /* Bordas arredondadas */
+    border: none; /* Sem borda */
+    padding: 8px 14px;
+    display: flex; /* Usar flexbox */
+    text-decoration: none;
+
+}
+.btn-info{
+    border: none;
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: normal;
+    color: #6a6a6a;
+    font-size: 12px;
+    
 }
 body {
     background-color:#48887B;
