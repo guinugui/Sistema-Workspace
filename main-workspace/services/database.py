@@ -7,9 +7,9 @@ import oracledb
 oracledb.init_oracle_client(lib_dir=r'C:\app\client\administrator\product\12.2.0\client_2')
 
 # Oracle database connection details
-db_username = 'HUBDADOS'
-db_password = 'HU8D4D05#M3'
-db_service_name = 'wint'
+db_username = ''
+db_password = ''
+db_service_name = ''
 
 # Função para conectar ao banco de dados Oracle
 def connect_to_oracle():
